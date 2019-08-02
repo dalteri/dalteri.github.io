@@ -1,0 +1,36 @@
+html {
+  height: 100%;
+}
+body {
+  position: absolute;
+  display: flex;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+.bg {
+  height: 100%;
+}
+
+.sprite {
+  background-color: #999;
+  width: 100px;
+  height: 500px;
+  align-self: center;
+}
+
+.text {
+  background-color: #FFF;
+  position: fixed;
+  height: 20%;
+  min-height: 1.2em;
+  width: 100%;
+  bottom: 5%;
+}
