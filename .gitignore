@@ -1,3 +1,5 @@
 img/*
 !img/icon-192.png
 !img/icon-512.png
+!img/bg1.jpg
+!img/sprite1.gif
