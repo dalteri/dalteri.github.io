@@ -84,10 +84,7 @@ function fetchAndCache(request) {
       } else if (response.headers.get('content-type') &&
             response.headers.get('content-type').indexOf("text") >= 0) {
         cur_cache = CURRENT_CACHES.site;
-      } else if (response.headers.get('content-type') &&
-            response.headers.get('content-type').indexOf("application/json") >= 0) {
-        cur_cache = CURRENT_CACHES.json;
-      }
+      } 
       if (cur_cache) {
         console.log('\tCaching the response to', request.url);
         return caches.open(cur_cache).then(function(cache) {

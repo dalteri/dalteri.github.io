@@ -9,9 +9,9 @@
   <meta http-equiv="Expires" content="0">
 
   <meta name="viewport" content="width=device-width, user-scalable=no">
-  <title>THE GAME - main menu</title>
-  <script src="index.js"></script>
-  <link rel="stylesheet" href="index.css" />
+  <title>THE GAME</title>
+  <script src="game.js"></script>
+  <link rel="stylesheet" href="game.css" />
   <link rel="manifest" href="manifest.json">
   <script type="text/javascript">
     if ('serviceWorker' in navigator) {
@@ -27,12 +27,19 @@
 </head>
 
 <body>
+  <div class="view">
+    <img class="bg" src="../img/bg1.jpg" alt="bg">
+    <div class="sprites">
+      <div class="m">
+        <img src="../img/sprite1.gif" alt="sprite">
+      </div>
+    </div>
+    <div class="text">
+      <p id="text">САЙОНАРА ГОККО ВА НАРЕТА МОН СА ДЕМО ТЕ О ФТАРА НАИЧАТТА БОКУРА НА МАККА НА КАНАШИМИ ГА КУРЕРУ КУРЕРУ СОШТЕ ЙОРУ ГА КУРУ</p>
+    </div>
+  </div>
   <nav>
-    <ol>
-      <a href="game/index.html" id="continue">Продолжить</a>
-      <a href="game/index.html" id="newGame">Начать</a>
-      <a href="options/index.html" id="options">Настройки</a>
-    </ol>
+
   </nav>
 </body>
 
