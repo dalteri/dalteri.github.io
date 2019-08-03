@@ -1,4 +1,4 @@
-@import "../shared.css";
+@import "shared.css";
 
 @media (min-height: 320px) {
   html {
@@ -39,14 +39,16 @@
 
 /* Middle */
 
-div.m {
+.m {
   position: relative;
+  display: block;
+  margin: 0;
   height: 100%;
   float: right;
   right: 50%;
 }
 
-div.m img {
+.m img {
   min-height: 100%;
   position: relative;
   right: -50%;

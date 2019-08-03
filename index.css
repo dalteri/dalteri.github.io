@@ -1,9 +1,5 @@
 @import "shared.css";
 
-html {
-  font-size: 40px;
-}
-
 nav {
   display: flex;
   position: fixed;
@@ -29,18 +25,10 @@ li {
 a {
   display: block;
   text-decoration: none;
+  font-size: 2rem;
   color: #FFF;
   cursor: pointer;
 }
-/*
-a:link,a:visited {
-  color: #FFF;
-}
-
-a:link:hover,a:visited:hover {
-  color: #CCC;
-}
-*/
 
 a:hover {
   color: #CCC;
