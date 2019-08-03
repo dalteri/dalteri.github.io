@@ -4,7 +4,8 @@ var CURRENT_CACHES = {
     css:'css-cache-v1',
     js:'js-cache-v1',
     site: 'site-cache-v1',
-    image: 'image-cache-v1'
+    image: 'image-cache-v1',
+    json: 'json-cache-v1'
 };
 
 self.addEventListener('install', (event) => {
@@ -66,8 +67,11 @@ function fetchAndCache(request) {
       ) {
       var cur_cache;
       if (response.headers.get('content-type') &&
-        response.headers.get('content-type').indexOf("application/javascript") >= 0) {
+            response.headers.get('content-type').indexOf("application/javascript") >= 0) {
         cur_cache = CURRENT_CACHES.js;
+      } else if (response.headers.get('content-type') &&
+            response.headers.get('content-type').indexOf("application/json") >= 0) {
+        cur_cache = CURRENT_CACHES.json;
       } else if (response.headers.get('content-type') &&
             response.headers.get('content-type').indexOf("text/css") >= 0) {
         cur_cache = CURRENT_CACHES.css;
@@ -80,6 +84,9 @@ function fetchAndCache(request) {
       } else if (response.headers.get('content-type') &&
             response.headers.get('content-type').indexOf("text") >= 0) {
         cur_cache = CURRENT_CACHES.site;
+      } else if (response.headers.get('content-type') &&
+            response.headers.get('content-type').indexOf("application/json") >= 0) {
+        cur_cache = CURRENT_CACHES.json;
       }
       if (cur_cache) {
         console.log('\tCaching the response to', request.url);
