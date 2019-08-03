@@ -22,6 +22,10 @@ ol {
   justify-content: center;
 }
 
+li {
+  list-style: none;
+}
+
 a {
   display: block;
   text-decoration: none;
