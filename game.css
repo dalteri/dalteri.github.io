@@ -2,14 +2,14 @@
 
 nav {
   display: none;
-  position: fixed;
-  z-index: 1;
-  left: 0;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #000;
-  overflow: hidden;
+}
+
+#newGame {
+  display: none;
+}
+
+#saveGame {
+  display: block;
 }
 
 .menuBtn {
@@ -27,18 +27,21 @@ nav {
   height: 0.2rem;
   background-color: #FFF;
   margin: 0.2rem 0;
-  transition: 0.4s;
-}
-.opened .bar1 {
-  -webkit-transform: rotate(-45deg) translate(-0.3rem, 0.2rem);
-  transform: rotate(-45deg) translate(-0.3rem, 0.2rem);
+  transition: 0.3s;
 }
 
-.opened .bar2 {opacity: 0;}
+.opened .bar1 {
+  -webkit-transform: rotate(-45deg) translate(-0.25rem, 0.18rem);
+  transform: rotate(-45deg) translate(-0.25rem, 0.18rem);
+}
+
+.opened .bar2 {
+  opacity: 0;
+}
 
 .opened .bar3 {
-  -webkit-transform: rotate(45deg) translate(-0.3rem, -0.3rem);
-  transform: rotate(45deg) translate(-0.3rem, -0.3rem);
+  -webkit-transform: rotate(45deg) translate(-0.35rem, -0.32rem);
+  transform: rotate(45deg) translate(-0.35rem, -0.32rem);
 }
 
 .view {
@@ -58,7 +61,7 @@ nav {
   object-fit: cover;
 }
 
-.sprites {
+/*.sprites {
   position: fixed;
   width: 100%;
   height: 100%;
@@ -66,8 +69,7 @@ nav {
   overflow: visible;
 }
 
-/* Middle */
-.m {
+ .m {
   position: relative;
   display: block;
   margin: 0;
@@ -80,13 +82,39 @@ nav {
   min-height: 100%;
   position: relative;
   right: -50%;
+} */
+.sprites {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  overflow: visible;
 }
 
-/* Left */
-.l {}
+.m {
+  position: relative;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  min-width: 20%;
+  width: auto;
+  min-height: 100%;
+  height: 100%;
+}
 
-/* Right */
-.r {}
+.m img {
+  position: relative;
+  min-height: 100%;
+  max-height: 200%;
+  max-width: 150%;
+  bottom: -30%;
+  width: auto;
+}
 
 .text {
   background-color: #FFF;
@@ -98,10 +126,15 @@ nav {
   bottom: 0;
 }
 
+p {
+  display: block;
+  margin: 0;
+}
+
 .text p {
   margin: 0;
   padding-left: 1rem;
   padding-right: 1rem;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
 }

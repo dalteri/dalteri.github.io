@@ -1,11 +1,11 @@
 // Caches
 var CURRENT_CACHES = {
-    font: 'font-cache-v1',
-    css:'css-cache-v1.1',
-    js:'js-cache-v1',
-    site: 'site-cache-v1.1',
-    image: 'image-cache-v1.1',
-    json: 'json-cache-v1.1'
+    font: 'font-cache-v1.1',
+    css:'css-cache-v1.2',
+    js:'js-cache-v1.1',
+    site: 'site-cache-v1.2',
+    image: 'image-cache-v1.2',
+    json: 'json-cache-v1.2'
 };
 
 self.addEventListener('install', (event) => {
@@ -84,7 +84,7 @@ function fetchAndCache(request) {
       } else if (response.headers.get('content-type') &&
             response.headers.get('content-type').indexOf("text") >= 0) {
         cur_cache = CURRENT_CACHES.site;
-      } 
+      }
       if (cur_cache) {
         console.log('\tCaching the response to', request.url);
         return caches.open(cur_cache).then(function(cache) {

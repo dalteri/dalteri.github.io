@@ -4,14 +4,14 @@
   src: url('Roboto.ttf');
 }
 
-html, body {
+html {
   height: 100%;
   text-size-adjust: none;
   -webkit-text-size-adjust: none;
   -moz-text-size-adjust: none;
   -ms-text-size-adjust: none;
   font-family: 'Roboto', sans-serif;
-  font-size: 20px;
+  font-size: 5vh;
 }
 
 body {
@@ -29,18 +29,6 @@ body {
   border: 0;
   overflow: hidden;
   background-color: #000;
-}
-
-@media (min-height: 320px) {
-  html {
-    font-size: 20px;
-  }
-}
-
-@media (min-height: 640px) {
-  html {
-    font-size: 24px;
-  }
 }
 
 nav {
@@ -66,22 +54,38 @@ ol {
   align-items: center;
   align-content: center;
   justify-content: center;
+  max-width: 100%;
+  max-height: 100%;
 }
 
 li {
   list-style: none;
-}
-
-a {
   display: block;
   text-decoration: none;
   font-size: 2rem;
   color: #FFF;
   cursor: pointer;
+  margin: 0.2rem;
 }
 
-a:hover {
+@media (orientation: landscape) {
+  li {
+    font-size: 2rem;
+  }
+}
+
+@media (orientation: portrait) {
+  li {
+    font-size: 10vw;
+  }
+}
+
+li:hover, li:active {
   color: #999;
+}
+
+#saveGame {
+  display: none;
 }
 
 .view {

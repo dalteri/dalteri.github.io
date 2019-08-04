@@ -1,5 +1,12 @@
 function startNewGame() {
   setGameCss();
+  let continueGame = document.getElementById('continueGame');
+  let parent = continueGame.parentElement;
+  parent.removeChild(continueGame);
+  parent.appendChild(continueGame);
+  continueGame.onclick = function functionName() {
+    closeMenu();
+  }
 }
 
 function setGameCss() {
@@ -11,8 +18,16 @@ function setGameCss() {
   document.getElementsByTagName("head").item(0).replaceChild(newcss, oldcss);
 }
 
+function continueGame() {
+  alert("Продолжение игры");
+}
+
 function openLoadGame() {
   alert("Загрузка игры");
+}
+
+function openSaveGame() {
+  alert("Сохранение игры");
 }
 
 function openOptions() {
@@ -23,7 +38,9 @@ function openMenu() {
   let menuBtn = document.getElementById('menuBtn');
   if (menuBtn && menuBtn.className.indexOf('opened') == -1) {
     menuBtn.className += ' opened';
-    menuBtn.onclick = function() {closeMenu();};
+    menuBtn.onclick = function() {
+      closeMenu();
+    };
     let menu = document.getElementById('menu').style.display = "flex";
   }
 }
@@ -31,8 +48,10 @@ function openMenu() {
 function closeMenu() {
   let menuBtn = document.getElementById('menuBtn');
   if (Boolean(menuBtn && !(menuBtn.className.indexOf('opened') == -1))) {
-    menuBtn.className = menuBtn.className.replace('opened','');
-    menuBtn.onclick = function() {openMenu();};
+    menuBtn.className = menuBtn.className.replace('opened', '');
+    menuBtn.onclick = function() {
+      openMenu();
+    };
     let menu = document.getElementById('menu').style.display = "none";
   }
 }
