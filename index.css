@@ -11,6 +11,7 @@ html, body {
   -moz-text-size-adjust: none;
   -ms-text-size-adjust: none;
   font-family: 'Roboto', sans-serif;
+  font-size: 20px;
 }
 
 body {
@@ -27,7 +28,7 @@ body {
   padding: 0;
   border: 0;
   overflow: hidden;
-  background-color: #333;
+  background-color: #000;
 }
 
 @media (min-height: 320px) {
@@ -80,7 +81,7 @@ a {
 }
 
 a:hover {
-  color: #CCC;
+  color: #999;
 }
 
 .view {
