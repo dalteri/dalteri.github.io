@@ -1,6 +1,5 @@
 function startNewGame() {
   setGameCss();
-  //setGameView();
 }
 
 function setGameCss() {
