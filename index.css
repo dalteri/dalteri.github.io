@@ -13,7 +13,17 @@ html {
   font-family: 'Roboto', sans-serif;
   font-size: 5vh;
 }
+@media (orientation: landscape) {
+  html {
+    font-size: 5vh;
+  }
+}
 
+@media (orientation: portrait) {
+  html {
+    font-size: 3vh;
+  }
+}
 body {
   position: fixed;
   display: flex;
@@ -70,7 +80,7 @@ li {
 
 @media (orientation: landscape) {
   li {
-    font-size: 2rem;
+    font-size: 1.5rem;
   }
 }
 
