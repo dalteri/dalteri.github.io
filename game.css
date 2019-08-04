@@ -1,15 +1,43 @@
-@import "shared.css";
+@import "index.css";
 
-@media (min-height: 320px) {
-  html {
-    font-size: 20px;
-  }
+nav {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #000;
+  overflow: hidden;
 }
 
-@media (min-height: 640px) {
-  html {
-    font-size: 24px;
-  }
+.menuBtn {
+  display: block;
+  position: fixed;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.bar1, .bar2, .bar3 {
+  width: 35px;
+  height: 5px;
+  background-color: #FFF;
+  margin: 6px 0;
+  transition: 0.4s;
+}
+.opened .bar1 {
+  -webkit-transform: rotate(-45deg) translate(-9px, 6px);
+  transform: rotate(-45deg) translate(-9px, 6px);
+}
+
+.opened .bar2 {opacity: 0;}
+
+.opened .bar3 {
+  -webkit-transform: rotate(45deg) translate(-8px, -8px);
+  transform: rotate(45deg) translate(-8px, -8px);
 }
 
 .view {
@@ -38,7 +66,6 @@
 }
 
 /* Middle */
-
 .m {
   position: relative;
   display: block;

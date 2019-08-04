@@ -1,4 +1,45 @@
-@import "shared.css";
+/*@import "shared.css";*/
+@font-face {
+  font-family: 'Roboto';
+  src: url('Roboto.ttf');
+}
+html, body {
+  height: 100%;
+  text-size-adjust: none;
+  -webkit-text-size-adjust: none;
+  -moz-text-size-adjust: none;
+  -ms-text-size-adjust: none;
+  font-family: 'Roboto', sans-serif;
+}
+
+body {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+@media (min-height: 320px) {
+  html {
+    font-size: 20px;
+  }
+}
+
+@media (min-height: 640px) {
+  html {
+    font-size: 24px;
+  }
+}
 
 nav {
   display: flex;
@@ -6,6 +47,13 @@ nav {
   align-items: center;
   align-content: center;
   justify-content: center;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #000;
+  overflow: hidden;
 }
 
 ol {
@@ -32,4 +80,12 @@ a {
 
 a:hover {
   color: #CCC;
+}
+
+.view {
+  display: none;
+}
+
+.menuBtn {
+  display: none;
 }

@@ -4,11 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="theme-color" content="#333" />
-  <meta name="Description" content="Visual novel web game">
-  <meta http-equiv="Cache-Control" content="no-cache">
-  <meta http-equiv="Pragma" content="no-cache">
-  <meta http-equiv="Expires" content="0">
-  <meta name="viewport" content="width=device-width, user-scalable=no">
+  <meta name="Description" content="Visual novel web game from dalteri">
   <title>Visual Novel</title>
   <link rel="manifest" href="manifest.json">
   <link rel="stylesheet" href="index.css" id="css">
@@ -27,14 +23,27 @@
 </head>
 
 <body>
-  <nav>
+  <nav id="menu">
     <ol>
       <li><a onclick="startNewGame()" id="newGame">Начать</a></li>
-      <li><a onclick="loadGame()" id="load">Загрузить</a></li>
-      <li><a onclick="options()" id="options">Настройки</a></li>
+      <li><a onclick="openLoadGame()" id="load">Загрузить</a></li>
+      <li><a onclick="openOptions()" id="options">Настройки</a></li>
     </ol>
   </nav>
-  <main class="view" id="view"></main>
+  <main class="view" id="view">
+    <img class="bg" src="img/bg1.jpg">
+    <div class="sprites">
+      <figure class="m"><img src="img/sprite1.gif"></figure>
+    </div>
+    <div class="text">
+      <p id="text"></p>
+    </div>
+  </main>
+  <div class="menuBtn" id="menuBtn" onclick="openMenu()">
+    <div class="bar1"></div>
+    <div class="bar2"></div>
+    <div class="bar3"></div>
+  </div>
 </body>
 
 </html>
