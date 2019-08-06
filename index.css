@@ -1,7 +1,16 @@
 /*@import "shared.css";*/
-@font-face {
+/* @font-face {
   font-family: 'Roboto';
   src: url('Roboto.ttf');
+} */
+
+/* @import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap&subset=cyrillic'); */
+
+@font-face {
+  font-family: 'Montserrat';
+  src: local('Montserrat Regular'), local('Montserrat-Regular'),
+  url(https://fonts.gstatic.com/s/montserrat/v14/JTUSjIg1_i6t8kCHKm459W1hyzbi.woff2) format('woff2'),
+  url(https://fonts.gstatic.com/s/montserrat/v14/JTUSjIg1_i6t8kCHKm459W1hzQ.woff) format('woff');
 }
 
 html {
@@ -10,7 +19,8 @@ html {
   -webkit-text-size-adjust: none;
   -moz-text-size-adjust: none;
   -ms-text-size-adjust: none;
-  font-family: 'Roboto', sans-serif;
+  /* font-family: 'Roboto', sans-serif; */
+  font-family: 'Montserrat', sans-serif;
   font-size: 5vh;
 }
 @media (orientation: landscape) {
@@ -72,7 +82,6 @@ li {
   list-style: none;
   display: block;
   text-decoration: none;
-  font-size: 2rem;
   color: #FFF;
   cursor: pointer;
   margin: 0.2rem;
@@ -94,14 +103,6 @@ li:hover, li:active {
   color: #999;
 }
 
-#saveGame {
-  display: none;
-}
-
-.view {
-  display: none;
-}
-
-.menuBtn {
+#saveGame, .view, .menuBtn{
   display: none;
 }
