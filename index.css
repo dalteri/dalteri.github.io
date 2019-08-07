@@ -1,5 +1,6 @@
 @font-face {
   font-family: 'Montserrat';
+  font-display: swap;
   src: local('Montserrat Regular'), local('Montserrat-Regular'),
     url(https://fonts.gstatic.com/s/montserrat/v14/JTUSjIg1_i6t8kCHKm459W1hyzbi.woff2) format('woff2'),
     url(https://fonts.gstatic.com/s/montserrat/v14/JTUSjIg1_i6t8kCHKm459W1hzQ.woff) format('woff');
@@ -7,6 +8,7 @@
 
 :root {
   --main-bg-color: #000;
+  --menu-text-color: #FFF;
 }
 
 html {
@@ -18,12 +20,6 @@ html {
   font-family: 'Montserrat', sans-serif;
   font-size: 5vh;
 }
-
-/* @media (orientation: landscape) {
-  html {
-    font-size: 5vh;
-  }
-} */
 
 @media (orientation: portrait) {
   html {
@@ -75,7 +71,7 @@ ol {
 }
 
 li {
-  color: #FFF;
+  color: var(--menu-text-color);
   cursor: pointer;
   margin: 0.2rem;
   font-size: 1.5rem;
@@ -111,7 +107,7 @@ li:hover, li:active {
 .bar1, .bar2, .bar3 {
   width: 1.2rem;
   height: 0.2rem;
-  background-color: #FFF;
+  background-color: var(--menu-text-color);
   margin: 0.2rem 0;
   transition: 0.3s;
 }
