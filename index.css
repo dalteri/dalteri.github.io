@@ -1,16 +1,12 @@
-/*@import "shared.css";*/
-/* @font-face {
-  font-family: 'Roboto';
-  src: url('Roboto.ttf');
-} */
-
-/* @import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap&subset=cyrillic'); */
-
 @font-face {
   font-family: 'Montserrat';
   src: local('Montserrat Regular'), local('Montserrat-Regular'),
-  url(https://fonts.gstatic.com/s/montserrat/v14/JTUSjIg1_i6t8kCHKm459W1hyzbi.woff2) format('woff2'),
-  url(https://fonts.gstatic.com/s/montserrat/v14/JTUSjIg1_i6t8kCHKm459W1hzQ.woff) format('woff');
+    url(https://fonts.gstatic.com/s/montserrat/v14/JTUSjIg1_i6t8kCHKm459W1hyzbi.woff2) format('woff2'),
+    url(https://fonts.gstatic.com/s/montserrat/v14/JTUSjIg1_i6t8kCHKm459W1hzQ.woff) format('woff');
+}
+
+:root {
+  --main-bg-color: #000;
 }
 
 html {
@@ -19,21 +15,22 @@ html {
   -webkit-text-size-adjust: none;
   -moz-text-size-adjust: none;
   -ms-text-size-adjust: none;
-  /* font-family: 'Roboto', sans-serif; */
   font-family: 'Montserrat', sans-serif;
   font-size: 5vh;
 }
-@media (orientation: landscape) {
+
+/* @media (orientation: landscape) {
   html {
     font-size: 5vh;
   }
-}
+} */
 
 @media (orientation: portrait) {
   html {
     font-size: 3vh;
   }
 }
+
 body {
   position: fixed;
   display: flex;
@@ -46,9 +43,8 @@ body {
   left: 0;
   margin: 0;
   padding: 0;
-  border: 0;
   overflow: hidden;
-  background-color: #000;
+  background-color: var(--main-bg-color);
 }
 
 nav {
@@ -62,13 +58,13 @@ nav {
   top: 0;
   right: 0;
   bottom: 0;
-  background-color: #000;
-  overflow: hidden;
+  background-color: var(--main-bg-color);
 }
 
 ol {
-  display: flex;
-  flex-direction: column;
+  display: block;
+  list-style: none;
+  text-align: center;
   margin: 0;
   padding: 0;
   align-items: center;
@@ -79,19 +75,17 @@ ol {
 }
 
 li {
-  list-style: none;
-  display: block;
-  text-decoration: none;
   color: #FFF;
   cursor: pointer;
   margin: 0.2rem;
+  font-size: 1.5rem;
 }
 
-@media (orientation: landscape) {
+/* @media (orientation: landscape) {
   li {
     font-size: 1.5rem;
   }
-}
+} */
 
 @media (orientation: portrait) {
   li {
@@ -103,6 +97,104 @@ li:hover, li:active {
   color: #999;
 }
 
-#saveGame, .view, .menuBtn{
-  display: none;
+.menuBtn {
+  visibility: hidden;
+  display: block;
+  position: fixed;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+  z-index: 1;
+  margin: 0.5rem;
+}
+
+.bar1, .bar2, .bar3 {
+  width: 1.2rem;
+  height: 0.2rem;
+  background-color: #FFF;
+  margin: 0.2rem 0;
+  transition: 0.3s;
+}
+
+.opened .bar1 {
+  -webkit-transform: rotate(-45deg) translate(-0.25rem, 0.18rem);
+  transform: rotate(-45deg) translate(-0.25rem, 0.18rem);
+}
+
+.opened .bar2 {
+  opacity: 0;
+}
+
+.opened .bar3 {
+  -webkit-transform: rotate(45deg) translate(-0.35rem, -0.32rem);
+  transform: rotate(45deg) translate(-0.35rem, -0.32rem);
+}
+
+.view {
+  visibility: visible;
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+}
+
+.bg {
+  position: relative;
+  min-height: 100vh;
+  min-width: 100vw;
+  object-fit: cover;
+}
+
+.sprites {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  overflow: visible;
+}
+
+.m {
+  position: relative;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  width: auto;
+  min-height: 100%;
+  height: 100%;
+}
+
+.m img {
+  position: relative;
+  min-height: 100%;
+  max-height: 200%;
+  max-width: 200%;
+  bottom: -30%;
+  width: auto;
+}
+
+.text {
+  background-color: #FFF;
+  position: fixed;
+  height: auto;
+  min-height: 4rem;
+  width: 30rem;
+  max-width: 100%;
+  bottom: 0;
+}
+
+.text p {
+  display: block;
+  margin: 0;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
 }
