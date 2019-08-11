@@ -4,18 +4,18 @@ window.onload = function() {
 
 function startNewGame() {
   document.getElementById('loading').style.visibility = "visible";
-  document.getElementById('view').innerHTML ='<picture id="bgPic"><img class="bg" alt="background"></picture><figure class="sprites"><picture class="m" id="sprite1Pic"><img alt="sprite" id="sprite1"></picture></figure><div class="text"><p id="text">What is that? Where am I?</p></div>';
+  document.getElementById('view').innerHTML = '<picture id="bgPic"><img id="bg" class="bg" alt="background"></picture><figure class="sprites"><picture class="m" id="sprite1Pic"><img alt="sprite" id="sprite1"></picture></figure><div class="text"><p id="text">What is that? Where am I?</p></div>';
   document.getElementById('newGame').style.display = "none";
   document.getElementById('menu').style.visibility = "hidden";
   document.getElementById('menuBtn').style.visibility = "visible";
   document.getElementById('continueGame').onclick = function functionName() {
     closeMenu();
   };
-  Promise.all([fetch('/img/bg1.jpg'), fetch('/img/bg1.jpg')]).then(values => {
-  alert(values);
-  document.getElementById('loading').style.visibility = "hidden";
-});
-
+  Promise.all([fetch('/img/bg1.jpg'), fetch('/img/sprite1.png')]).then(values => {
+    document.getElementById('bg').src='/img/bg1.jpg';
+    document.getElementById('sprite1').src='/img/sprite1.png';
+    document.getElementById('loading').style.visibility = "hidden";
+  });
 }
 
 function continueGame() {
@@ -61,19 +61,17 @@ function closeMenu() {
 let state = {
   textId: 0,
   bg: '',
-  sprites: [
-    {
-      name: '',
-      pos: ''
-    }
-  ],
+  sprites: [{
+    name: '',
+    pos: ''
+  }],
   music: '',
   choices: []
 }
 
 function animateText(data) {
   var ele = document.getElementById("text"),
-      txt = data.split("");
+    txt = data.split("");
   ele.innerHTML = "";
   var interval = setInterval(function() {
     if (!txt[0]) {
