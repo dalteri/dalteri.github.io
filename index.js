@@ -11,8 +11,8 @@ function startNewGame() {
   document.getElementById('continueGame').onclick = function functionName() {
     closeMenu();
   };
-  fetch('/img/bg1.jpg')
-  .then(response => {if(response.ok){alert('Всё нормас')}});
+  let bgResponse = await fetch('/img/bg1.jpg');
+  if(bgResponse.ok){alert('Всё нормас')};
   document.getElementById('loading').style.visibility = "hidden";
 }
 
