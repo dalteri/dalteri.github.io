@@ -12,7 +12,7 @@ function startNewGame() {
     closeMenu();
   };
   fetch('/img/bg1.jpg')
-  .then(response => alert(response.text()));
+  .then(response => if(response.ok){alert('Всё нормас')});
   document.getElementById('loading').style.visibility = "hidden";
 }
 
