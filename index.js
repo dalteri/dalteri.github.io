@@ -12,9 +12,10 @@ function startNewGame() {
     closeMenu();
   };
   Promise.all([fetch('/img/bg1.jpg'), fetch('/img/bg1.jpg')]).then(values => {
-  alert(values); 
-});
+  alert(values);
   document.getElementById('loading').style.visibility = "hidden";
+});
+
 }
 
 function continueGame() {
