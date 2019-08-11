@@ -1,13 +1,18 @@
+window.onload = function() {
+  document.getElementById('loading').style.visibility = "hidden";
+}
+
 function startNewGame() {
-  // let newGame = document.getElementById('newGame');
-  // newGame.style.display = "none";
+  document.getElementById('loading').style.visibility = "visible";
   document.getElementById('newGame').style.display = "none";
   document.getElementById('menu').style.visibility = "hidden";
   document.getElementById('menuBtn').style.visibility = "visible";
   document.getElementById('continueGame').onclick = function functionName() {
     closeMenu();
   };
+  document.getElementById('loading').style.visibility = "hidden";
 }
+
 function continueGame() {
   alert("Продолжение игры");
 }

@@ -4,10 +4,26 @@
 <head>
   <meta charset="utf-8">
   <meta name="theme-color" content="#000" />
-  <link rel="manifest" href="manifest.json">    
+  <link rel="manifest" href="manifest.json">
   <meta name="Description" content="Visual novel web game from dalteri">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Visual Novel</title>
+  <style>
+    #loading {
+      display: flex;
+      height: 100%;
+      width: 100%;
+      z-index: 10;
+      background-color: black;
+      align-items: center;
+      justify-content: center;
+    }
+    .logo{
+      max-width: 50%;
+      height: 50%;
+      stroke: white;
+    }
+  </style>
   <link rel="stylesheet" href="index.css" id="css">
   <script src="index.js"></script>
   <script>
@@ -51,6 +67,28 @@
     <div class="bar1"></div>
     <div class="bar2"></div>
     <div class="bar3"></div>
+  </div>
+  <div id="loading">
+    <svg class="logo" viewBox="0 0 12 10.66" stroke-width="0.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <defs>
+        <path id="t" d="M 1 1 h 10 l -5 8.66 Z" />
+        <clipPath id="clip">
+          <use href="#t" />
+        </clipPath>
+      </defs>
+      <use href="#t" />
+      <g clip-path="url(#clip)">
+        <path d="M 1 1 l 10 0">
+          <animateTransform attributeName="transform" type="rotate" values="0,1,1;60,1,1" dur="1s" repeatCount="indefinite" />
+        </path>
+        <path d="M 11 1 L 6 9.66">
+          <animateTransform attributeName="transform" type="rotate" values="0,11,1;60,11,1" dur="1s" repeatCount="indefinite" />
+        </path>
+        <path d="M 6 9.66 L 1 1">
+          <animateTransform attributeName="transform" type="rotate" values="0,6,9.66;60,6,9.66" dur="1s" repeatCount="indefinite" />
+        </path>
+      </g>
+    </svg>
   </div>
 </body>
 
