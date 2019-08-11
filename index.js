@@ -4,6 +4,7 @@ window.onload = function() {
 
 function startNewGame() {
   document.getElementById('loading').style.visibility = "visible";
+  document.getElementById('view').innerHTML ='<picture id="bgPic"><img class="bg" alt="background"></picture><figure class="sprites"><picture class="m" id="sprite1Pic"><img alt="sprite" id="sprite1"></picture></figure><div class="text"><p id="text">What is that? Where am I?</p></div>';
   document.getElementById('newGame').style.display = "none";
   document.getElementById('menu').style.visibility = "hidden";
   document.getElementById('menuBtn').style.visibility = "visible";

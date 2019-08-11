@@ -42,28 +42,16 @@
 <body>
   <nav id="menu">
     <ol id="menuList">
-      <li id="newGame" onclick="startNewGame()">Начать</li>
-      <li id="continueGame" onclick="continueGame()">Продолжить</li>
-      <li id="saveGame" onclick="openSaveGame()">Сохранить</li>
-      <li id="loadGame" onclick="openLoadGame()">Загрузить</li>
-      <li id="options" onclick="openOptions()">Настройки</li>
+      <li id="newGame" onclick="startNewGame()" tabindex="0">Начать</li>
+      <li id="continueGame" onclick="continueGame()" tabindex="0">Продолжить</li>
+      <li id="saveGame" onclick="openSaveGame()" tabindex="0">Сохранить</li>
+      <li id="loadGame" onclick="openLoadGame()" tabindex="0">Загрузить</li>
+      <li id="options" onclick="openOptions()" tabindex="0">Настройки</li>
     </ol>
   </nav>
-  <main class="view" id="view">
-    <picture id="bgPic">
-      <img class="bg" alt="background">
-    </picture>
-    <figure class="sprites">
-      <picture class="m" id="sprite1Pic">
-        <img alt="sprite" id="sprite1">
-      </picture>
-    </figure>
-    <div class="text">
-      <p id="text">What is that? Where am I?</p>
-    </div>
-  </main>
+  <main class="view" id="view"></main>
   <div class="cover"></div>
-  <div class="menuBtn" id="menuBtn" onclick="openMenu()">
+  <div class="menuBtn" id="menuBtn" onclick="openMenu()" tabindex="0">
     <div class="bar1"></div>
     <div class="bar2"></div>
     <div class="bar3"></div>
