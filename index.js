@@ -11,6 +11,8 @@ function startNewGame() {
   document.getElementById('continueGame').onclick = function functionName() {
     closeMenu();
   };
+  fetch('/img/bg1.jpg')
+  .then(response => alert(response.text()));
   document.getElementById('loading').style.visibility = "hidden";
 }
 
