@@ -3,14 +3,19 @@
 
 <head>
   <meta charset="utf-8">
-  <meta name="theme-color" content="#000" />
   <link rel="manifest" href="manifest.json">
-  <meta name="Description" content="Visual novel web game from dalteri">
+  <meta name="theme-color" content="#000" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="Description" content="Visual novel web game from dalteri">
   <title>Visual Novel</title>
   <style>
+    body{
+      display: flex;
+      margin:0;
+    }
     #loading {
       display: flex;
+      position: absolute;
       height: 100%;
       width: 100%;
       z-index: 10;
@@ -40,24 +45,8 @@
 </head>
 
 <body>
-  <nav id="menu">
-    <ol id="menuList">
-      <li id="newGame" onclick="startNewGame()" tabindex="0">Начать</li>
-      <li id="continueGame" onclick="continueGame()" tabindex="0">Продолжить</li>
-      <li id="saveGame" onclick="openSaveGame()" tabindex="0">Сохранить</li>
-      <li id="loadGame" onclick="openLoadGame()" tabindex="0">Загрузить</li>
-      <li id="options" onclick="openOptions()" tabindex="0">Настройки</li>
-    </ol>
-  </nav>
-  <main class="view" id="view"></main>
-  <div class="cover"></div>
-  <div class="menuBtn" id="menuBtn" onclick="openMenu()" tabindex="0">
-    <div class="bar1"></div>
-    <div class="bar2"></div>
-    <div class="bar3"></div>
-  </div>
   <div id="loading">
-    <svg class="logo" viewBox="0 0 12 10.66" stroke-width="0.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <svg class="logo" viewBox="0 0 12 10.66" stroke-width="0.3" fill="none" stroke-linecap="round" stroke-linejoin="round">
       <defs>
         <path id="t" d="M 1 1 h 10 l -5 8.66 Z" />
         <clipPath id="clip">
@@ -77,6 +66,22 @@
         </path>
       </g>
     </svg>
+  </div>
+  <nav id="menu">
+    <ol id="menuList">
+      <li id="newGame" onclick="startNewGame()" tabindex="0">Начать</li>
+      <li id="continueGame" onclick="continueGame()" tabindex="0">Продолжить</li>
+      <li id="saveGame" onclick="openSaveGame()" tabindex="0">Сохранить</li>
+      <li id="loadGame" onclick="openLoadGame()" tabindex="0">Загрузить</li>
+      <li id="options" onclick="openOptions()" tabindex="0">Настройки</li>
+    </ol>
+  </nav>
+  <main class="view" id="view"></main>
+  <div class="cover"></div>
+  <div class="menuBtn" id="menuBtn" onclick="openMenu()" tabindex="0">
+    <div class="bar1"></div>
+    <div class="bar2"></div>
+    <div class="bar3"></div>
   </div>
 </body>
 
