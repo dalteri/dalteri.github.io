@@ -1,4 +1,8 @@
 window.onload = function() {
+  requestAnimationFrame(hideLoading);
+}
+
+function hideLoading() {
   document.getElementById('loading').style.visibility = "hidden";
 }
 
@@ -12,9 +16,9 @@ function startNewGame() {
     closeMenu();
   };
   Promise.all([fetch('/img/bg1.jpg'), fetch('/img/sprite1.png')]).then(values => {
-    document.getElementById('bg').src='/img/bg1.jpg';
-    document.getElementById('sprite1').src='/img/sprite1.png';
-    document.getElementById('loading').style.visibility = "hidden";
+    document.getElementById('bg').src = '/img/bg1.jpg';
+    document.getElementById('sprite1').src = '/img/sprite1.png';
+    requestAnimationFrame(hideLoading);
   });
 }
 
