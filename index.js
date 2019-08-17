@@ -27,7 +27,7 @@ function display(id) {
 
 function startNewGame() {
   display('loading');
-  requestAnimationFrame(setNewGameScreen);
+  setNewGameScreen();
   document.getElementById('continueGame').onclick = function () {
     closeMenu();
   };
