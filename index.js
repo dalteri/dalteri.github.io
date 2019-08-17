@@ -7,7 +7,7 @@ window.onload = function() {
 }
 
 function toggle(id, cl, on) {
-  requestAnimationFrame(function () {
+  requestAnimationFrame(function() {
     document.getElementById(id).classList.toggle(cl, on);
   });
 }
@@ -31,20 +31,15 @@ function display(id) {
 function startNewGame() {
   display('loading');
   setNewGameScreen();
-  document.getElementById('continueGame').onclick = function () {
+  document.getElementById('continueGame').onclick = function() {
     closeMenu();
   };
 
-  ImageLoader(['img/bg1.jpg','img/sprite1.png'],function () {
+  ImageLoader(['img/bg1.jpg', 'img/sprite1.png'], function() {
     document.getElementById('bg').src = 'img/bg1.jpg';
     document.getElementById('sprite1').src = 'img/sprite1.png';
     collapse('loading');
   });
-  // Promise.all([fetch('/img/bg1.jpg'), fetch('/img/sprite1.png')]).then(values => {
-  //   document.getElementById('bg').src = '/img/bg1.jpg';
-  //   document.getElementById('sprite1').src = '/img/sprite1.png';
-  //   collapse('loading');
-  // });
 }
 
 function setNewGameScreen() {
@@ -53,7 +48,7 @@ function setNewGameScreen() {
   display('continueGame');
   display('saveGame');
   display('view');
-  hide('menu');
+  collapse('menu');
   display('menuBtn');
 }
 
@@ -70,33 +65,22 @@ function openSaveGame() {
 }
 
 function openOptions() {
-  alert("Настройки");
+  collapse('mainMenu');
+  display('optionsMenu');
 }
 
 function openMenu() {
-  let menuBtn = document.getElementById('menuBtn');
-  if (menuBtn && menuBtn.className.indexOf('opened') == -1) {
-    menuBtn.className += ' opened';
-    menuBtn.onclick = function() {
-      closeMenu();
-    };
-    // let menu = document.getElementById('menu').style.display = "flex";
-    //let menu = document.getElementById('menu').style.visibility = "visible";
-    show('menu');
-  }
+  document.getElementById('menuBtn').classList.toggle('opened', true);
+  menuBtn.onclick = closeMenu;
+  display('mainMenu');
+  display('menu');
 }
 
 function closeMenu() {
-  let menuBtn = document.getElementById('menuBtn');
-  if (Boolean(menuBtn && !(menuBtn.className.indexOf(' opened') == -1))) {
-    menuBtn.className = menuBtn.className.replace(' opened', '');
-    menuBtn.onclick = function() {
-      openMenu();
-    };
-    //let menu = document.getElementById('menu').style.display = "none";
-    //let menu = document.getElementById('menu').style.visibility = "hidden";
-    hide('menu');
-  }
+  document.getElementById('menuBtn').classList.toggle('opened', false);
+  menuBtn.onclick = openMenu;
+  collapse('menu');
+  collapse('optionsMenu');
 }
 
 let state = {
@@ -157,45 +141,45 @@ function closeFullscreen() {
  * @param {Array} Images An array of strings with the paths to the images.
  * @param {Function} Callback Callback function executed when all images has been loaded or not.
  */
-function ImageLoader(Images, Callback){
-    // Keep the count of the verified images
-    var allLoaded = 0;
+function ImageLoader(Images, Callback) {
+  // Keep the count of the verified images
+  var allLoaded = 0;
 
-    // The object that will be returned in the callback
-    var _log = {
-        success: [],
-        error: []
-    };
+  // The object that will be returned in the callback
+  var _log = {
+    success: [],
+    error: []
+  };
 
-    // Executed everytime an img is successfully or wrong loaded
-    var verifier = function(){
-        allLoaded++;
+  // Executed everytime an img is successfully or wrong loaded
+  var verifier = function() {
+    allLoaded++;
 
-        // triggers the end callback when all images has been tested
-        if(allLoaded == Images.length){
-            Callback.call(undefined, _log);
-        }
-    };
-
-    // Loop through all the images URLs
-    for (var index = 0; index < Images.length; index++) {
-        // Prevent that index has the same value by wrapping it inside an anonymous fn
-        (function(i){
-            // Image path providen in the array e.g image.png
-            var imgSource = Images[i];
-            var img = new Image();
-
-            img.addEventListener("load", function(){
-                _log.success.push(imgSource);
-                verifier();
-            }, false);
-
-            img.addEventListener("error", function(){
-                _log.error.push(imgSource);
-                verifier();
-            }, false);
-
-            img.src = imgSource;
-        })(index);
+    // triggers the end callback when all images has been tested
+    if (allLoaded == Images.length) {
+      Callback.call(undefined, _log);
     }
+  };
+
+  // Loop through all the images URLs
+  for (var index = 0; index < Images.length; index++) {
+    // Prevent that index has the same value by wrapping it inside an anonymous fn
+    (function(i) {
+      // Image path providen in the array e.g image.png
+      var imgSource = Images[i];
+      var img = new Image();
+
+      img.addEventListener("load", function() {
+        _log.success.push(imgSource);
+        verifier();
+      }, false);
+
+      img.addEventListener("error", function() {
+        _log.error.push(imgSource);
+        verifier();
+      }, false);
+
+      img.src = imgSource;
+    })(index);
+  }
 }
