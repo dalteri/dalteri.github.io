@@ -43,6 +43,7 @@ function setNewGameScreen() {
   collapse('newGame');
   display('continueGame');
   display('saveGame');
+  display('view');
   hide('menu');
   display('menuBtn');
 }
