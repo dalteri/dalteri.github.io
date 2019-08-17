@@ -1,18 +1,34 @@
 window.onload = function() {
-  requestAnimationFrame(hideLoading);
+  display('menu');
+  collapse('loading');
 }
 
-function hideLoading() {
-  document.getElementById('loading').style.visibility = "hidden";
+function toggle(id, cl, on) {
+  requestAnimationFrame(function () {
+    document.getElementById(id).classList.toggle(cl, on);
+  });
+}
+
+function hide(id) {
+  toggle(id, "hidden", true);
+}
+
+function show(id) {
+  toggle(id, "hidden", false);
+}
+
+function collapse(id) {
+  toggle(id, "collapsed", true);
+}
+
+function display(id) {
+  toggle(id, "collapsed", false)
 }
 
 function startNewGame() {
-  document.getElementById('loading').style.visibility = "visible";
-  document.getElementById('view').innerHTML = '<picture id="bgPic"><img id="bg" class="bg" alt="background"></picture><figure class="sprites"><picture class="m" id="sprite1Pic"><img alt="sprite" id="sprite1"></picture></figure><div class="text"><p id="text">What is that? Where am I?</p></div>';
-  document.getElementById('newGame').style.display = "none";
-  document.getElementById('menu').style.visibility = "hidden";
-  document.getElementById('menuBtn').style.visibility = "visible";
-  document.getElementById('continueGame').onclick = function functionName() {
+  display('loading');
+  requestAnimationFrame(setNewGameScreen);
+  document.getElementById('continueGame').onclick = function () {
     closeMenu();
   };
   Promise.all([fetch('/img/bg1.jpg'), fetch('/img/sprite1.png')]).then(values => {
@@ -20,6 +36,15 @@ function startNewGame() {
     document.getElementById('sprite1').src = '/img/sprite1.png';
     requestAnimationFrame(hideLoading);
   });
+}
+
+function setNewGameScreen() {
+  document.getElementById('view').innerHTML = '<picture id="bgPic"><img id="bg" class="bg" alt="background"></picture><figure class="sprites"><picture class="m" id="sprite1Pic"><img alt="sprite" id="sprite1"></picture></figure><div class="text"><p id="text">What is that? Where am I?</p></div>';
+  collapse('newGame');
+  display('continueGame');
+  display('saveGame');
+  hide('menu');
+  display('menuBtn');
 }
 
 function continueGame() {
@@ -46,7 +71,8 @@ function openMenu() {
       closeMenu();
     };
     // let menu = document.getElementById('menu').style.display = "flex";
-    let menu = document.getElementById('menu').style.visibility = "visible";
+    //let menu = document.getElementById('menu').style.visibility = "visible";
+    show('menu');
   }
 }
 
@@ -58,7 +84,8 @@ function closeMenu() {
       openMenu();
     };
     //let menu = document.getElementById('menu').style.display = "none";
-    let menu = document.getElementById('menu').style.visibility = "hidden";
+    //let menu = document.getElementById('menu').style.visibility = "hidden";
+    hide('menu');
   }
 }
 
