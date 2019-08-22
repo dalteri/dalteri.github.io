@@ -8,7 +8,7 @@
 
 :root {
   --main-bg-color: #000;
-  --menu-text-color: #FFF;
+  --menu-text-color: #eee;
 }
 
 * {
@@ -82,10 +82,6 @@ li {
   }
 }
 
-li:hover, li:active, li:focus {
-  color: #999;
-}
-
 #optionsMenu>li {
   display: flex;
 }
@@ -96,6 +92,18 @@ li:hover, li:active, li:focus {
 
 .option>input {
   width: 100%;
+}
+
+#optionsBack{
+  margin-top: 1rem;
+}
+
+.interactable{
+  cursor: pointer;
+}
+
+.interactable:hover, .interactable:active, .interactable:focus{
+  color: #999;
 }
 
 .menuBtn {
@@ -192,25 +200,27 @@ li:hover, li:active, li:focus {
 }
 
 .text {
-  background-color: #FFF;
+  background-color: rgba(0, 0, 0, 0.7);
   position: fixed;
   height: auto;
   min-height: 4rem;
   width: 30rem;
   max-width: 100%;
   bottom: 0;
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+  padding-bottom: 0.5rem;
 }
 
 .text p {
   display: block;
   margin: 0;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  padding-top: 0.75rem;
-  padding-bottom: 0.75rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  color: var(--menu-text-color);
 }
-
-
 
 .switch {
   position: relative;
@@ -249,16 +259,22 @@ li:hover, li:active, li:focus {
   transition: .4s;
 }
 
-input:checked + .slider {
+input:checked+.slider {
   background-color: #2196F3;
 }
 
-input:focus + .slider {
+input:focus+.slider {
   box-shadow: 0 0 1px #2196F3;
 }
 
-input:checked + .slider:before {
+input:checked+.slider:before {
   -webkit-transform: translateX(1rem);
   -ms-transform: translateX(1rem);
   transform: translateX(1rem);
 }
+
+/* @media (display-mode: fullscreen) {
+  #fullscreenOption{
+    display: none;
+  }
+} */

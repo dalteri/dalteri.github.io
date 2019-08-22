@@ -1,9 +1,51 @@
 var imageCount;
 var imagesLoaded;
 
+var state = {
+  line: -1,
+  bg: '',
+  sprites: [{
+    name: '',
+    pos: ''
+  }],
+  music: '',
+  choices: []
+}
+
 window.onload = function() {
   display('menu');
   collapse('loading');
+}
+
+document.onfullscreenchange = function () {
+  let cb = document.getElementById('fullscreenCheckBox');
+  if (!document.fullscreenElement) {
+    cb.checked = false;
+  } else {
+    cb.checked = true;
+  }
+}
+
+function NextLine() {
+  let line = script[++state.line];
+  if (typeof line == "string") {
+    PrintText(line);
+  } else if (typeof line == "object") {
+    if(line.text){
+      PrintText(line.text);
+    }
+    if(line.name){
+      PrintName(line.name)
+    }
+  };
+}
+
+function PrintText(text) {
+  document.getElementById('text').innerText = text;
+}
+
+function PrintName(name) {
+  document.getElementById('name').innerText = name;
 }
 
 function toggle(id, cl, on) {
@@ -30,6 +72,18 @@ function display(id) {
 
 function startNewGame() {
   display('loading');
+
+  state = {
+    line: -1,
+    bg: '',
+    sprites: [{
+      name: '',
+      pos: ''
+    }],
+    music: '',
+    choices: []
+  };
+
   setNewGameScreen();
   document.getElementById('continueGame').onclick = function() {
     closeMenu();
@@ -43,7 +97,14 @@ function startNewGame() {
 }
 
 function setNewGameScreen() {
-  document.getElementById('view').innerHTML = '<picture id="bgPic"><img id="bg" class="bg" alt="background"></picture><figure class="sprites"><picture class="m" id="sprite1Pic"><img alt="sprite" id="sprite1"></picture></figure><div class="text"><p id="text">What is that? Where am I?</p></div>';
+  document.getElementById('view').innerHTML =
+    '<picture id="bgPic"><img id="bg" class="bg" alt="background"></picture>' +
+    '<figure class="sprites"><picture class="m" id="sprite1Pic"><img alt="sprite" id="sprite1"></picture></figure>' +
+    '<div class="text"><p id="name"></p><p id="text"></p></div>' +
+    '<div class="cover" id="cover"></div>';
+  document.getElementById('cover').onclick = function() {
+    NextLine();
+  };
   collapse('newGame');
   display('continueGame');
   display('saveGame');
@@ -68,6 +129,10 @@ function openOptions() {
   collapse('mainMenu');
   display('optionsMenu');
 }
+function CloseOptions() {
+  collapse('optionsMenu');
+  display('mainMenu');
+}
 
 function openMenu() {
   document.getElementById('menuBtn').classList.toggle('opened', true);
@@ -83,17 +148,6 @@ function closeMenu() {
   collapse('optionsMenu');
 }
 
-let state = {
-  textId: 0,
-  bg: '',
-  sprites: [{
-    name: '',
-    pos: ''
-  }],
-  music: '',
-  choices: []
-}
-
 function animateText(data) {
   var ele = document.getElementById("text"),
     txt = data.split("");
@@ -106,9 +160,17 @@ function animateText(data) {
   }, 100);
 }
 
+function toggleFullscreen() {
+  if (!document.fullscreenElement) {
+    openFullscreen()
+  } else {
+    closeFullscreen()
+  }
+}
+
 /* View in fullscreen */
 function openFullscreen() {
-  var elem = document.documentElement;
+  let elem = document.documentElement;
   if (elem.requestFullscreen) {
     elem.requestFullscreen();
   } else if (elem.mozRequestFullScreen) { /* Firefox */
@@ -122,7 +184,7 @@ function openFullscreen() {
 
 /* Close fullscreen */
 function closeFullscreen() {
-  var elem = document.documentElement;
+  let elem = document.documentElement;
   if (document.exitFullscreen) {
     document.exitFullscreen();
   } else if (document.mozCancelFullScreen) { /* Firefox */

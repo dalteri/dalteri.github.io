@@ -78,29 +78,35 @@
   <nav id="menu" class="collapsed">
 
     <ul id="mainMenu">
-      <li id="newGame" onclick="startNewGame()" tabindex="0">Начать</li>
-      <li id="continueGame" class="collapsed" onclick="continueGame()" tabindex="0">Продолжить</li>
-      <li id="saveGame" class="collapsed" onclick="openSaveGame()" tabindex="0">Сохранить</li>
-      <li id="loadGame" onclick="openLoadGame()" tabindex="0">Загрузить</li>
-      <li id="options" onclick="openOptions()" tabindex="0">Настройки</li>
+      <li id="newGame" onclick="startNewGame()" tabindex="0" class="interactable">Начать</li>
+      <li id="continueGame" class="collapsed" onclick="continueGame()" tabindex="0" class="interactable">Продолжить</li>
+      <li id="saveGame" class="collapsed" onclick="openSaveGame()" tabindex="0" class="interactable">Сохранить</li>
+      <li id="loadGame" onclick="openLoadGame()" tabindex="0" class="interactable">Загрузить</li>
+      <li id="options" onclick="openOptions()" tabindex="0" class="interactable">Настройки</li>
     </ul>
 
     <ul id="optionsMenu" class="collapsed">
       <li tabindex="0">
         <div class="option">
           <label>Загрузка файлов</label>
-          <ul>
+          <ul class="optionList">
             <li>
-              <input type="radio" name="fileLoading" id="fl1">
-              <label for="fl1">Заранее</label>
+              <label for="fl1" class="interactable">
+                <input type="radio" name="fileLoading" id="fl1" class="interactable">
+                <span>Заранее</span>
+              </label>
             </li>
             <li>
-              <input type="radio" name="fileLoading" id="fl2">
-              <label for="fl2">В момент открытия</label>
+              <label for="fl2" class="interactable">
+                <input type="radio" name="fileLoading" id="fl2" class="interactable">
+                <span>В момент открытия</span>
+              </label>
             </li>
             <li>
-              <input type="radio" name="fileLoading" id="fl3">
-              <label for="fl3">Загрузить всё</label>
+              <label for="fl3" class="interactable">
+                <input type="radio" name="fileLoading" id="fl3" class="interactable">
+                <span>Загрузить всё</span>
+              </label>
             </li>
           </ul>
         </div>
@@ -108,17 +114,17 @@
       <li tabindex="0">
         <div class="option">
           <label for="volume">Громкость</label><br>
-          <input type="range" name="volume" min="0" max="100" id="volume">
+          <input type="range" name="volume" min="0" max="100" id="volume" class="interactable">
         </div>
       </li>
       <li tabindex="0">
         <div class="option">
           <label for="textSpeed">Скорость вывода текста</label><br>
-          <input type="range" name="textSpeed" min="0" max="100" id="textSpeed">
+          <input type="range" name="textSpeed" min="0" max="100" id="textSpeed" class="interactable">
         </div>
       </li>
       <li tabindex="0">
-        <div class="option">
+        <div class="option" id="fullscreenOption" onclick="toggleFullscreen()">
           <label for="fullscreenCheckBox">Полный экран</label>
           <label class="switch">
             <input type="checkbox" id="fullscreenCheckBox">
@@ -126,15 +132,18 @@
           </label>
         </div>
       </li>
+      <li>
+        <label id="optionsBack" class="interactable" onclick="CloseOptions()">Назад</label>
+      </li>
     </ul>
   </nav>
   <main class="view collapsed" id="view"></main>
-  <div class="cover collapsed"></div>
   <div class="menuBtn collapsed" id="menuBtn" onclick="openMenu()" tabindex="0">
     <div class="bar1"></div>
     <div class="bar2"></div>
     <div class="bar3"></div>
   </div>
+  <script type="text/javascript" src="script.js"></script>
 </body>
 
 </html>
