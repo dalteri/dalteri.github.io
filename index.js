@@ -88,7 +88,12 @@ function startNewGame() {
   document.getElementById('continueGame').onclick = function() {
     closeMenu();
   };
-
+  
+  let scriptFile = document.createElement('script');
+  scriptFile.src = 'script.js';
+  scriptFile.async = false;
+  document.head.appendChild(scriptFile);
+  
   ImageLoader(['img/bg1.jpg', 'img/sprite1.png'], function() {
     document.getElementById('bg').src = 'img/bg1.jpg';
     document.getElementById('sprite1').src = 'img/sprite1.png';
