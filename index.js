@@ -13,8 +13,8 @@ var state = {
 }
 
 window.onload = function() {
-  display('menu');
-  collapse('loading');
+  Display('menu');
+  Collapse('loading');
 }
 
 document.onfullscreenchange = function () {
@@ -54,24 +54,16 @@ function toggle(id, cl, on) {
   });
 }
 
-function hide(id) {
-  toggle(id, "hidden", true);
-}
-
-function show(id) {
-  toggle(id, "hidden", false);
-}
-
-function collapse(id) {
+function Collapse(id) {
   toggle(id, "collapsed", true);
 }
 
-function display(id) {
+function Display(id) {
   toggle(id, "collapsed", false)
 }
 
 function startNewGame() {
-  display('loading');
+  Display('loading');
 
   state = {
     line: -1,
@@ -88,34 +80,29 @@ function startNewGame() {
   document.getElementById('continueGame').onclick = function() {
     closeMenu();
   };
-  
+
   let scriptFile = document.createElement('script');
   scriptFile.src = 'script.js';
   scriptFile.async = false;
   document.head.appendChild(scriptFile);
-  
+
   ImageLoader(['img/bg1.jpg', 'img/sprite1.png'], function() {
     document.getElementById('bg').src = 'img/bg1.jpg';
     document.getElementById('sprite1').src = 'img/sprite1.png';
-    collapse('loading');
+    Collapse('loading');
   });
 }
 
-function setNewGameScreen() {
-  document.getElementById('view').innerHTML =
-    '<picture id="bgPic"><img id="bg" class="bg" alt="background"></picture>' +
-    '<figure class="sprites"><picture class="m" id="sprite1Pic"><img alt="sprite" id="sprite1"></picture></figure>' +
-    '<div class="text"><p id="name"></p><p id="text"></p></div>' +
-    '<div class="cover" id="cover"></div>';
+function setNewGameScreen() {    
   document.getElementById('cover').onclick = function() {
     NextLine();
   };
-  collapse('newGame');
-  display('continueGame');
-  display('saveGame');
-  display('view');
-  collapse('menu');
-  display('menuBtn');
+  Collapse('newGame');
+  Display('continueGame');
+  Display('saveGame');
+  Display('view');
+  Collapse('menu');
+  Display('menuBtn');
 }
 
 function continueGame() {
@@ -131,26 +118,26 @@ function openSaveGame() {
 }
 
 function openOptions() {
-  collapse('mainMenu');
-  display('optionsMenu');
+  Collapse('mainMenu');
+  Display('optionsMenu');
 }
 function CloseOptions() {
-  collapse('optionsMenu');
-  display('mainMenu');
+  Collapse('optionsMenu');
+  Display('mainMenu');
 }
 
 function openMenu() {
   document.getElementById('menuBtn').classList.toggle('opened', true);
   menuBtn.onclick = closeMenu;
-  display('mainMenu');
-  display('menu');
+  Display('mainMenu');
+  Display('menu');
 }
 
 function closeMenu() {
   document.getElementById('menuBtn').classList.toggle('opened', false);
   menuBtn.onclick = openMenu;
-  collapse('menu');
-  collapse('optionsMenu');
+  Collapse('menu');
+  Collapse('optionsMenu');
 }
 
 function animateText(data) {
