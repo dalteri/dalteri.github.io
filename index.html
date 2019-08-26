@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru" dir="ltr" class="fill">
+<html lang="ru" dir="ltr" class="full">
 
 <head>
   <meta charset="utf-8">
@@ -16,17 +16,19 @@
       padding: 0;
       margin: 0;
     }
-    #loading {
-      display: flex;
-      z-index: 10;
+    html{
+      font-size: 4vh;
       background-color: #000;
-      align-items: center;
-      justify-content: center;
     }
-    .logo {
-      max-width: 50%;
-      height: 50%;
+    #loading {
+      z-index: 10;
       stroke: white;
+      width: 33%;
+      height: 33%;
+      stroke-width:.3;
+      fill:none;
+      stroke-linecap:round;
+      stroke-linejoin:round;
     }
     .flex-center{
       display: flex;
@@ -34,54 +36,46 @@
       align-content: center;
       justify-content: center;
     }
-    .fill {
+    .full {
       height: 100%;
       width: 100%;
-    }
-    .fixed{
       position: fixed;
-    }
-    .collapsed {
-      display: none!important;
     }
   </style>
 </head>
 
-<body class="fill flex-center">
-  <div id="loading" class="fill fixed">
-    <svg class="logo fixed" viewBox="0 0 12 10.66" stroke-width=".3" fill="none" stroke-linecap="round" stroke-linejoin="round">
-      <defs>
-        <path id="t" d="M1 1h10L6 9.66Z" />
-        <clipPath id="c">
-          <use href="#t" />
-        </clipPath>
-      </defs>
-      <use href="#t" />
-      <g clip-path="url(#c)">
-        <path d="M1 1l10 0" transform="rotate(20,1,1)">
-          <animateTransform attributeName="transform" type="rotate" values="0,1,1;60,1,1" dur="1s" repeatCount="indefinite" />
-        </path>
-        <path d="M11 1L6 9.66" transform="rotate(20,11,1)">
-          <animateTransform attributeName="transform" type="rotate" values="0,11,1;60,11,1" dur="1s" repeatCount="indefinite" />
-        </path>
-        <path d="M6 9.66L1 1" transform="rotate(20,6,9.66)">
-          <animateTransform attributeName="transform" type="rotate" values="0,6,9.66;60,6,9.66" dur="1s" repeatCount="indefinite" />
-        </path>
-      </g>
-    </svg>
-
-  </div>
-  <nav id="menu" class="fill flex-center collapsed">
-
-    <ul id="mainMenu" class="flex-center fixed">
-      <li id="newGame" class="interactable" onclick="startNewGame()" tabindex="0">Начать</li>
-      <li id="continueGame" class="interactable collapsed" onclick="continueGame()" tabindex="0">Продолжить</li>
-      <li id="saveGame" class="interactable collapsed" onclick="openSaveGame()" tabindex="0">Сохранить</li>
-      <li id="loadGame" class="interactable" onclick="openLoadGame()" tabindex="0">Загрузить</li>
-      <li id="options" class="interactable" onclick="openOptions()" tabindex="0">Настройки</li>
+<body class="full flex-center">
+  <svg id="loading" viewBox="0 0 12 10.66">
+    <defs>
+      <path id="t" d="M1 1h10L6 9.66Z" />
+      <clipPath id="c">
+        <use href="#t" />
+      </clipPath>
+    </defs>
+    <use href="#t" />
+    <g clip-path="url(#c)">
+      <path d="M1 1l10 0" transform="rotate(20,1,1)">
+        <animateTransform attributeName="transform" type="rotate" values="0,1,1;60,1,1" dur="1s" repeatCount="indefinite" />
+      </path>
+      <path d="M11 1L6 9.66" transform="rotate(20,11,1)">
+        <animateTransform attributeName="transform" type="rotate" values="0,11,1;60,11,1" dur="1s" repeatCount="indefinite" />
+      </path>
+      <path d="M6 9.66L1 1" transform="rotate(20,6,9.66)">
+        <animateTransform attributeName="transform" type="rotate" values="0,6,9.66;60,6,9.66" dur="1s" repeatCount="indefinite" />
+      </path>
+    </g>
+  </svg>
+  <nav id="menu" class="full flex-center" style="display:none;">
+    <ul class="flex-center">
+      <li id="startBtn" onclick="Start()" tabindex="0">Начать</li>
+      <li id="continueBtn" onclick="Continue()" tabindex="0" style="display:none;">Продолжить</li>
+      <li id="loadBtnMenu" onclick="OpenSaves(true)" tabindex="0">Загрузить</li>
+      <li id="settingsBtnMenu" onclick="OpenSettings()" tabindex="0">Настройки</li>
+      <li id="galleryBtn" onclick="OpenGallery()" tabindex="0" style="display:none;">Галерея</li>
     </ul>
-
-    <ul id="optionsMenu" class="fixed collapsed">
+  </nav>
+  <div id="settings" class="full flex-center" style="display:none;">
+    <ul style="display:none;">
       <li tabindex="0">
         <div class="option">
           <label>Загрузка файлов</label>
@@ -134,21 +128,42 @@
         <label id="optionsBack" class="interactable" onclick="CloseOptions()">Назад</label>
       </li>
     </ul>
-  </nav>
-  <img id="bg" class="fill fixed" src="img/bg1.jpg">
-  <figure class="sprites fill flex-center">
+  </div>
+  <div id="saves" class="full" style="display:none;"></div>
+  <div id="gallery" class="full" style="display:none;"></div>
+  <img id="bg" class="full" src="img/bg1.jpg" style="display:none;">
+  <figure id="sprites" class="full flex-center" style="display:none;">
     <picture class="m flex-center" id="sprite1Pic"><img alt="sprite" id="sprite1"></picture>
   </figure>
-  <div class="text">
-    <p id="name"></p>
-    <p id="text"></p>
+  <div id="adv" style="display:none;">
+    <div id="controls">
+      <p id="name"></p>
+      <ul id="gameControls">
+        <li id="qSaveBtn"></li>
+        <li id="qLoadBtn"></li>
+        <li id="saveBtn"></li>
+        <li id="loadBtn"></li>
+        <li id="settingsBtn"></li>
+        <li id="toTitleBtn"></li>
+        <li id="openControlsBtn"></li>
+      </ul>
+    </div>
+    <div id="textBox">
+      <p id="text"></p>
+      <ul id="textControls">
+        <li id="logBtn"></li>
+        <li id="autoBtn"></li>
+        <li id="skipBtn"></li>
+      </ul>
+    </div>
   </div>
-  <div class="cover fill" id="cover"></div>
-  <div class="menuBtn fixed collapsed" id="menuBtn" onclick="openMenu()" tabindex="0">
+  <div id="menuBtn" onclick="openMenu()" tabindex="0" style="display:none;">
     <div class="bar1"></div>
     <div class="bar2"></div>
     <div class="bar3"></div>
   </div>
+
+  <noscript style="color:white">Для работы данной страницы требуется JavaScript</noscript>
 
   <script>
     let link = document.createElement("link");
@@ -159,7 +174,7 @@
 
     document.head.appendChild(link);
   </script>
-  <script src="index.js"></script>
+  <script src="index.js" defer></script>
   <script>
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('/sw.js')

@@ -1,6 +1,3 @@
-var imageCount;
-var imagesLoaded;
-
 var state = {
   line: -1,
   bg: '',
@@ -13,8 +10,8 @@ var state = {
 }
 
 window.onload = function() {
-  Display('menu');
-  Collapse('loading');
+  Show('menu');
+  Hide('loading');
 }
 
 document.onfullscreenchange = function () {
@@ -54,16 +51,32 @@ function toggle(id, cl, on) {
   });
 }
 
-function Collapse(id) {
-  toggle(id, "collapsed", true);
+function Hide(id) {
+  requestAnimationFrame(function() {
+    document.getElementById(id).style.display = "none";
+  });
 }
 
-function Display(id) {
-  toggle(id, "collapsed", false)
+function Show(id) {
+  requestAnimationFrame(function() {
+    document.getElementById(id).style.display = "";
+  });
 }
 
-function startNewGame() {
-  Display('loading');
+function ShowGame() {
+  Show('bg');
+  Show("sprites");
+  Show('adv');
+}
+
+function HideGame() {
+  Hide('bg');
+  Hide("sprites");
+  Hide('adv');
+}
+
+function Start() {
+  Show('loading');
 
   state = {
     line: -1,
@@ -77,7 +90,7 @@ function startNewGame() {
   };
 
   setNewGameScreen();
-  document.getElementById('continueGame').onclick = function() {
+  document.getElementById('continueBtn').onclick = function() {
     closeMenu();
   };
 
@@ -89,20 +102,20 @@ function startNewGame() {
   ImageLoader(['img/bg1.jpg', 'img/sprite1.png'], function() {
     document.getElementById('bg').src = 'img/bg1.jpg';
     document.getElementById('sprite1').src = 'img/sprite1.png';
-    Collapse('loading');
+    Hide('loading');
   });
 }
 
-function setNewGameScreen() {    
-  document.getElementById('cover').onclick = function() {
+function setNewGameScreen() {
+  let fun = function(e) {
+    //e.stopPropagation();
     NextLine();
   };
-  Collapse('newGame');
-  Display('continueGame');
-  Display('saveGame');
-  Display('view');
-  Collapse('menu');
-  Display('menuBtn');
+  document.getElementById('bg').onclick = fun;
+  document.getElementById('sprites').onclick = fun;
+  document.getElementById('adv').onclick = fun;
+  ShowGame();
+  Hide('menu');
 }
 
 function continueGame() {
@@ -118,26 +131,25 @@ function openSaveGame() {
 }
 
 function openOptions() {
-  Collapse('mainMenu');
-  Display('optionsMenu');
+  Hide('menu');
+  Show('settings');
 }
 function CloseOptions() {
-  Collapse('optionsMenu');
-  Display('mainMenu');
+  Hide('settings');
+  Show('menu');
 }
 
 function openMenu() {
   document.getElementById('menuBtn').classList.toggle('opened', true);
   menuBtn.onclick = closeMenu;
-  Display('mainMenu');
-  Display('menu');
+  Show('menu');
 }
 
 function closeMenu() {
   document.getElementById('menuBtn').classList.toggle('opened', false);
   menuBtn.onclick = openMenu;
-  Collapse('menu');
-  Collapse('optionsMenu');
+  Hide('menu');
+  Hide('settings');
 }
 
 function animateText(data) {

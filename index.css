@@ -8,7 +8,8 @@
 
 :root {
   --main-bg-color: #000;
-  --menu-text-color: #eee;
+  --ctrls-bg-color: rgba(0, 0, 0, .7);
+  --main-text-color: #eee;
 }
 
 * {
@@ -16,42 +17,209 @@
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
-#bg {
-  object-fit: cover;
-  object-position: 50% 50%;
-  z-index: -1;
-}
-
 html {
-  height: 100%;
   text-size-adjust: none;
   -webkit-text-size-adjust: none;
   -moz-text-size-adjust: none;
   -ms-text-size-adjust: none;
   font-family: 'Montserrat', sans-serif;
-  font-size: 5vh;
-}
-
-@media (orientation: portrait) {
-  html {
-    font-size: 3vh;
-  }
 }
 
 body {
   overflow: hidden;
 }
 
-nav {
-  z-index: 1;
+ul {
+  list-style: none;
+}
+
+li {
+  display: block;
+  cursor: pointer;
+}
+
+p {
+  cursor: default;
+}
+
+#menu {
+  background-color: var(--main-bg-color);
+  z-index: 3001;
+}
+
+#menu ul {
+  flex-direction: column;
+}
+
+#settings {
+  z-index: 3002;
+}
+
+#saves {
+  z-index: 3003;
+}
+
+#gallery {
+  z-index: 3004;
+}
+
+#bg {
+  object-fit: cover;
+  object-position: 50% 50%;
+  z-index: 0;
+}
+
+#sprites {
+  z-index: 1000;
+}
+
+#adv {
+  position: fixed;
+  z-index: 2000;
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+#adv * {
+  color: var(--main-text-color);
+}
+
+#adv p {
+  opacity: 1;
+}
+
+#adv p:empty {
+  opacity: 0;
+}
+
+#controls{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.2rem;
+}
+
+#name {
+}
+
+#name, #gameControls li {
+  border-radius: 0.5rem;
+  padding: .2rem 1rem;
+  background-color: var(--ctrls-bg-color);
+}
+
+#gameControls {
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-gap: 0.2rem;
+  opacity: .3;
+  transition: opacity .2s;
+}
+
+#gameControls:hover {
+  opacity: 1;
+}
+
+#gameControls li {
+  font-size: 0.3rem;
+  transition: background-color 0.2s;
+}
+
+#gameControls li:hover {
   background-color: var(--main-bg-color);
 }
 
-ul {
-  list-style: none;
-  flex-direction: column;
-  margin: 0;
-  padding: 0;
+#textControls, #gameControls {
+  display: grid;
+  justify-items: stretch;
+  text-align: center;
+}
+
+@media (orientation: landscape) {
+  #openControlsBtn {
+    display: none;
+  }
+
+  #qSaveBtn::after {
+    content: "Б.Сохранение";
+  }
+
+  #qLoadBtn::after {
+    content: "Б.Загрузка";
+  }
+}
+
+#saveBtn::after {
+  content: "Сохранение";
+}
+
+#loadBtn::after {
+  content: "Загрузка";
+}
+
+#settingsBtn::after {
+  content: "Настройки";
+}
+
+#toTitleBtn::after {
+  content: "На главную";
+}
+
+#logBtn::after {
+  content: "Журнал";
+}
+
+#autoBtn::after {
+  content: "Авточтение";
+}
+
+#skipBtn::after {
+  content: "Пропуск";
+}
+
+#textBox {
+  grid-area: t;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1rem;
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+  background-color: var(--ctrls-bg-color);
+}
+
+@media (orientation:landscape) {
+  #textBox {
+    max-width: 100%;
+    width: 30rem;
+  }
+}
+
+#text {
+  padding: .5rem 1rem;
+  min-height: 3rem;
+}
+
+#textControls {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+#textControls li {
+  display: block;
+  font-size: 0.6rem;
+  padding: 0 0.2rem;
+  opacity: .3;
+  transition: opacity .2s;
+}
+
+#textControls li:hover {
+  opacity: 1;
+}
+
+#gap {
+  grid-area: g;
 }
 
 #menu>ul {
@@ -59,24 +227,20 @@ ul {
   max-height: 100%;
 }
 
-li {
-  color: var(--menu-text-color);
-  margin: 0.2rem;
-}
-
-#mainMenu li {
+#menu li {
   font-size: 1.5rem;
+  margin: 0.2rem;
   cursor: pointer;
   text-align: center;
 }
 
-@media (orientation: portrait) {
-  #mainMenu li {
-    font-size: 10vw;
-  }
+li {
+  color: var(--main-text-color);
 }
 
-#optionsMenu>li {
+
+
+#settings>li {
   display: flex;
 }
 
@@ -88,35 +252,36 @@ li {
   width: 100%;
 }
 
-#optionsBack{
+#optionsBack {
   margin-top: 1rem;
 }
 
-.interactable{
+.interactable {
   cursor: pointer;
 }
 
-.interactable:hover, .interactable:active, .interactable:focus{
+.interactable:hover, .interactable:active, .interactable:focus {
   color: #999;
 }
 
-.menuBtn {
+#menuBtn {
+  position: fixed;
   display: block;
   top: 0;
   right: 0;
   cursor: pointer;
-  z-index: 1;
+  z-index: 9999;
   margin: 0.5rem;
 }
 
-.menuBtn:hover *, .menuBtn:active *, .menuBtn:focus * {
+#menuBtn:hover *, #menuBtn:active *, #menuBtn:focus * {
   background-color: #999;
 }
 
 .bar1, .bar2, .bar3 {
   width: 1.2rem;
   height: 0.2rem;
-  background-color: var(--menu-text-color);
+  background-color: var(--main-text-color);
   margin: 0.2rem 0;
   transition: 0.3s;
 }
@@ -140,19 +305,6 @@ li {
   opacity: 0;
 }
 
-.bg {
-  position: relative;
-  min-height: 100vh;
-  min-width: 100vw;
-  object-fit: cover;
-}
-
-.sprites {
-  position: fixed;
-  margin: 0;
-  overflow: visible;
-}
-
 .m {
   min-height: 100%;
   height: 100%;
@@ -162,29 +314,6 @@ li {
   position: relative;
   height: 200%;
   bottom: -30%;
-}
-
-.text {
-  background-color: rgba(0, 0, 0, 0.7);
-  position: fixed;
-  height: auto;
-  min-height: 4rem;
-  width: 30rem;
-  max-width: 100%;
-  bottom: 0;
-  border-top-left-radius: 0.5rem;
-  border-top-right-radius: 0.5rem;
-  padding-bottom: 0.5rem;
-}
-
-.text p {
-  display: block;
-  margin: 0;
-  margin-left: 1rem;
-  margin-right: 1rem;
-  margin-top: 0.5rem;
-  margin-bottom: 0.5rem;
-  color: var(--menu-text-color);
 }
 
 .switch {
@@ -236,4 +365,108 @@ input:checked+.slider:before {
   -webkit-transform: translateX(1rem);
   -ms-transform: translateX(1rem);
   transform: translateX(1rem);
+}
+
+
+
+
+
+
+
+@media (orientation: portrait) {
+  html {
+    font-size: 5vw;
+  }
+
+  #menu li {
+    font-size: 10vw;
+  }
+
+  #adv {
+    width: 100%;
+    /* grid-template-areas:
+      ". c"
+      "n c"
+      "t t";
+    grid-template-columns: 1fr max-content;
+    grid-template-rows: min-content max-content max-content; */
+  }
+  #name{
+    align-self: flex-end;
+  }
+  #gameControls {
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: repeat(5, 1fr);
+    grid-template:
+      "s s s"
+      "l l l"
+      "n n n"
+      "t t t"
+      "qs ql c";
+    grid-gap: 0.2rem;
+    grid-auto-flow: row;
+    grid-auto-rows: 1fr;
+    opacity: 1;
+    align-self: end;
+  }
+
+  #gameControls li {
+    font-size: 1rem;
+  }
+
+  #saveBtn, #loadBtn, #settingsBtn, #toTitleBtn {
+    display: none;
+  }
+
+  #gameControls:hover li {
+    display: block;
+  }
+
+  #saveBtn {
+    grid-area: s;
+  }
+
+  #loadBtn {
+    grid-area: l;
+  }
+
+  #settingsBtn {
+    grid-area: n;
+  }
+
+  #toTitleBtn {
+    grid-area: t;
+  }
+
+  #qSaveBtn {
+    grid-area: qs;
+  }
+
+  #qSaveBtn::after {
+    content: "Б.С";
+  }
+
+  #qLoadBtn {
+    grid-area: ql;
+  }
+
+  #qLoadBtn::after {
+    content: "Б.З";
+  }
+
+  #openControlsBtn {
+    grid-area: c;
+  }
+
+  #openControlsBtn::after {
+    content: "X";
+  }
+
+  #openControlsBtn:active {
+    opacity: 1;
+  }
+
+  #textBox {
+    width: 100%;
+  }
 }
