@@ -45,12 +45,6 @@ function PrintName(name) {
   document.getElementById('name').innerText = name;
 }
 
-function toggle(id, cl, on) {
-  requestAnimationFrame(function() {
-    document.getElementById(id).classList.toggle(cl, on);
-  });
-}
-
 function Hide(id) {
   requestAnimationFrame(function() {
     document.getElementById(id).style.display = "none";
