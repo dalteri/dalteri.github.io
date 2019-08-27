@@ -41,6 +41,19 @@
       width: 100%;
       position: fixed;
     }
+    #l {
+	    transform-origin: 1px 1px;
+	    animation: spin 1s linear infinite;
+	  }
+    #r {
+	    transform-origin: 11px 1px;
+	    animation: spin 1s linear infinite;
+	  }
+    #b {
+	    transform-origin: 6px 9.66px;
+	    animation: spin 1s linear infinite;
+	  }
+	  @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(60deg); }
   </style>
 </head>
 
@@ -54,15 +67,9 @@
     </defs>
     <use href="#t" />
     <g clip-path="url(#c)">
-      <path d="M1 1l10 0" transform="rotate(20,1,1)">
-        <animateTransform attributeName="transform" type="rotate" values="0,1,1;60,1,1" dur="1s" repeatCount="indefinite" />
-      </path>
-      <path d="M11 1L6 9.66" transform="rotate(20,11,1)">
-        <animateTransform attributeName="transform" type="rotate" values="0,11,1;60,11,1" dur="1s" repeatCount="indefinite" />
-      </path>
-      <path d="M6 9.66L1 1" transform="rotate(20,6,9.66)">
-        <animateTransform attributeName="transform" type="rotate" values="0,6,9.66;60,6,9.66" dur="1s" repeatCount="indefinite" />
-      </path>
+      <path id="l" d="M1 1l10 0" transform="rotate(20,1,1)"></path>
+      <path id="r" d="M11 1L6 9.66" transform="rotate(20,11,1)"></path>
+      <path id="b" d="M6 9.66L1 1" transform="rotate(20,6,9.66)"></path>
     </g>
   </svg>
   <nav id="menu" class="full flex-center" style="display:none;">
